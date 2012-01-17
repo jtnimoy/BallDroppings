@@ -1,0 +1,15 @@
+BallDroppings
+by Josh Nimoy
+
+Source codes from various incarnations of BallDroppings.
+
++ Cinder_Augmented_Reality: This is the camera-tracking table version which is permanently installed at the Computerspiele Museum in Berlin
+
++ OpenFrameworks: This is closest to the native C++ version which originally caught the public's eye in Winter 2003. I later ported it to an early release of OpenFrameworks before losing the original source.
+
++ Processing: this was a quick Processing version done in Summer of 2005 as part of a commission for FACT, Liverpool.
+
++ ChromeExperiments: this was a commission from Google, promoting their new Chrome browser. It is written in Javascript with Processing.js, and sorry - I lost the FLA source file for that SWF.
+
+NOTE ABOUT ORIGINAL 2003 SOURCE: This might be floating around the New York City area as the source was distributed on CDs at a store called TKNY in the East Village. If anyone has a copy, we would love for you to send it to us so we may archive it here.
+
