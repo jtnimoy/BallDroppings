@@ -1,0 +1,15 @@
+0005
+
++ better deflection angles with shadows… should work better with black sticks.
+
+0004
+
++ sound works now
+
++ settings file has been moved to balldroppings.app/Contents/Resources/ so it won't get deleted from /tmp by the OS on bootup.
+
++ new key control capital Q will fit the quad to the window so the software can be tested without the projection setup.
+
++ green 'x' mode doesn't slow down the sim as much
+
++ keyboard keys '-' and '+' now adjust the collision threshold with more sensitivity
