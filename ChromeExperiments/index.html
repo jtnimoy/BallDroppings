@@ -52,8 +52,8 @@ var lines = [];
 var balls = [];
 var draggable = -1;
 var dragside = 0;
-var ballEmitterX=100;
-var ballEmitterY=100;
+var ballEmitterX = 100;
+var ballEmitterY = 100;
 var ticks = 0;
 var ballDropRate = 100;
 var gravity = 0.3;
@@ -261,7 +261,6 @@ window.onload = function (){
     //make a Processing.js instance
     var p = Processing("canvasElement");
     
-    
     p.setup = function(){
 	this.size(window.innerWidth,window.innerHeight-100);
     };
@@ -409,6 +408,10 @@ window.onload = function (){
     //start processing.js
     p.init();
     
+    // load data if hash is set
+    if (window.location.hash.length > 1) {
+        loadStateFromURL();
+    }
 };
 
 window.onresize = function(){
@@ -419,7 +422,11 @@ window.onresize = function(){
 //-------------------------------------------------------------
 
 //reset button
-function reset(){
+function reset( keepLocationHash ){
+    
+    if (!keepLocationHash)
+        window.location.hash = '';
+
     lines = [];
     balls = [];
     ballDropRate = 100;
@@ -435,6 +442,46 @@ function getFlashMovie(movieName) {
 
 
 //-------------------------------------------------------------
+
+// data
+function getState() {
+    return {
+        ballEmitterX : ballEmitterX,
+        ballEmitterY : ballEmitterY,
+        lines : lines,
+        ballDropRate : ballDropRate,
+        gravity : gravity
+    }
+}
+
+function saveState() {
+    window.location.hash = window.btoa(JSON.stringify(getState()));
+    return true;
+}
+
+function loadStateFromURL() {
+    reset(true);
+    var data = {};
+    try {
+        data = JSON.parse(window.atob(window.location.hash.substr(1)));
+    } catch (e) {
+        return false;
+    }
+    for (i in data.lines) {
+        var newLine = new EditLine();
+        newLine.x1 = data.lines[i].x1;
+        newLine.x2 = data.lines[i].x2;
+        newLine.y1 = data.lines[i].y1;
+        newLine.y2 = data.lines[i].y2;
+        lines.push(newLine);
+    }
+    gravity = data.gravity;
+    ballEmitterX = data.ballEmitterX;
+    ballEmitterY = data.ballEmitterY;
+    ballDropRate = data.ballDropRate;
+    return true;
+}
+
 
 //]]>
 </script>
@@ -464,6 +511,7 @@ function getFlashMovie(movieName) {
     <tr>
   <td>
     <input type="submit" value="reset" onMouseDown="reset()">
+    <input type="button" value="save" onMouseDown="saveState()"> 
   </td>
     <td class="r">ball drop rate <input value="+" type="submit"
       onMouseDown="ballDropRate-=10;if(ballDropRate<1)ballDropRate=1;">
