@@ -3,6 +3,8 @@
 */
 
 #include "EditLine.h"
+#include <math.h>
+
 
 EditLine::EditLine(){
   initMem();
